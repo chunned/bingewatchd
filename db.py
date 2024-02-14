@@ -3,7 +3,7 @@ import sqlite3
 # Create DB and cursor object
 con = sqlite3.connect("tvdb.db")
 cur = con.cursor()
-
+# TODO: add any constraints necessary (i.e. NOT NULL)
 
 def createTables():
     # Create SHOW table
@@ -17,7 +17,7 @@ def createTables():
     PRIMARY KEY (id, name)
     )
     """)
-    # TODO: add genres, add any constraints necessary (i.e. NOT NULL)
+    
 
     # Create SEASON table
     cur.execute("""
