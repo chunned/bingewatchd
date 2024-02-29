@@ -6,6 +6,7 @@ cur = con.cursor()
 # TODO: add any constraints necessary (i.e. NOT NULL)
 
 def createTables():
+    # MAIN RELATIONS
     # Create SHOW table
     cur.execute("""
     CREATE TABLE IF NOT EXISTS show(
@@ -18,7 +19,6 @@ def createTables():
     )
     """)
     
-
     # Create SEASON table
     cur.execute("""
     CREATE TABLE IF NOT EXISTS season(
@@ -88,8 +88,8 @@ def createTables():
 
     # Actor-Show relationship B (Actor appears in Show)
     cur.execute("""CREATE TABLE IF NOT EXISTS appears_in(
-    episodeID integer,
-    actorID integer,
+    episodeID INTEGER,
+    actorID INTEHER,
     FOREIGN KEY(episodeID) REFERENCES episode(id),
     FOREIGN KEY(actorID) REFERENCES actor(id),
     PRIMARY KEY (episodeID, actorID)
@@ -124,6 +124,5 @@ def createTables():
     PRIMARY KEY (showID, genreName) 
     )
     """)
-
 
 createTables()
