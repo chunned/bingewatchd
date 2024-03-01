@@ -3,6 +3,7 @@ import sqlite3
 
 def createTables(cur):
     # Parameters: SQLite cursor object
+    # MAIN RELATIONS
     # Create SHOW table
     cur.execute("""
     CREATE TABLE IF NOT EXISTS show(
@@ -13,8 +14,7 @@ def createTables(cur):
     rating INTEGER
     )
     """)
-    # TODO: add genres, add any constraints necessary (i.e. NOT NULL)
-
+    
     # Create SEASON table
     cur.execute("""
     CREATE TABLE IF NOT EXISTS season(
@@ -67,9 +67,9 @@ def createTables(cur):
 
     # Actor-Episode relationship (Actor appears in Episode)
     cur.execute("""CREATE TABLE IF NOT EXISTS appears_in(
-    episodeID integer,
-    actorID integer,
     character TEXT,
+    episodeID INTEGER,
+    actorID INTEGER,
     FOREIGN KEY(episodeID) REFERENCES episode(id),
     FOREIGN KEY(actorID) REFERENCES actor(id),
     PRIMARY KEY (episodeID, actorID)
@@ -199,3 +199,4 @@ def insertShowGenre(cur, con, showID, genre):
         con.commit()
     except sqlite3.IntegrityError:
         print("Show-genre relationship already exists in database.")
+
