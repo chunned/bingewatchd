@@ -31,14 +31,26 @@ def searchShow(name):
     content = json.loads(r.content)
     # print(json.dumps(content, indent=2))
     # print(content['total_results'])
-
+    limit = 3
     numResults = content["total_results"]
+    if numResults < limit:
+        limit = numResults
     # Display results
     showResults = []
     print(f'RESULTS FOUND: {numResults}')
-    for i in range(numResults):
+    if numResults > limit:
+        print(f"SHOWING FIRST {limit} RESULTS")
+    for i in range(limit):
         print(f'RESULT #{i+1}')
-        show = content['results'][i]
+        try:
+            show = content['results'][i]
+        except IndexError as e:
+            # For debugging, uncomment below
+            # print(content)
+            # print(e)
+            print(f"ERROR: Index {i} is out of range")
+            return None
+
 
         print(f"TITLE: {show['original_name']}")
         try:
