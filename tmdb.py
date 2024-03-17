@@ -36,11 +36,12 @@ def searchShow(name):
     if numResults < limit:
         limit = numResults
     # Display results
+    print(numResults)
     showResults = []
     print(f'RESULTS FOUND: {numResults}')
     if numResults > limit:
         print(f"SHOWING FIRST {limit} RESULTS")
-    for i in range(limit):
+    '''for i in range(limit):
         print(f'RESULT #{i+1}')
         try:
             show = content['results'][i]
@@ -51,7 +52,6 @@ def searchShow(name):
             print(f"ERROR: Index {i} is out of range")
             return None
 
-
         print(f"TITLE: {show['original_name']}")
         try:
             print(f"COUNTRY: {show['origin_country'][0]}")
@@ -61,14 +61,15 @@ def searchShow(name):
             print(f"YEAR: {show['first_air_date'][:4]}")
         except IndexError:
             print(f"YEAR: Unknown")
-        print('---')
-
+        print('---')'''
+    return content
+    '''
     choice = input('Enter your selection number: ')
     choice = int(choice)
 
     show = content['results'][choice - 1]
     return show['id']
-
+    '''
 
 def searchShowDetails(showID):
     # Search the metadata for a unique show ID
@@ -108,7 +109,7 @@ def searchEpisode(showID, seasonNum, episodeNum):
     url = URLBASE + f'/tv/{showID}/season/{seasonNum}'
     resp = requests.get(url, headers=header)
     content = json.loads(resp.content)
-
+    print(content)
     episodes = content["episodes"]
     episodeNum = int(episodeNum)
     selectedEpisode = None

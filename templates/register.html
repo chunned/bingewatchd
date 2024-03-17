@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="main_body"> 
+    <h1> Register to use BingeWatchd </h1>
+</div> 
+<div class="form_body"> 
+    <form action="/submit_register" method="post"> 
+        <p> Enter your username :   </p>
+        <p> <input type="text" name="username" style="border-radius: 8px;" placeholder="Username :  "/> </p>
+        <p> Enter your password :   </p>
+        <p> <input type="password" name="password" style="border-radius: 8px;" placeholder="Password :  "/> </p>
+        <p style="text-align: center;"> <input type="submit" /></p>
+    </form>
+</div>
+{% endblock content %}

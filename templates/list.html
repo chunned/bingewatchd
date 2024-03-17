@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="main_body"> 
+        <h1> My List </h1>
+    </div>
+    <!-- code from https://stackoverflow.com/questions/48570109/layout-a-flex-box-similar-to-a-table -->
+    <table style="width:100%">
+        <tr>
+            <th>Movie/Show Name</th>
+            <th>Release Date</th>
+            <th>Date Watched</th>
+            <th>Rating</th>
+        </tr>
+        {% for row in eps %}
+        <tr>
+            <td>{{row[1]}}</td>
+            <td>{{row[2]}}</td>
+            <td>{{row[3]}}</td>
+            <td>{{row[4]}}</td>
+        </tr>
+        <tr><td colspan="4"><hr></td></tr>
+        {% endfor %}
+    </table>
+      {% endblock content %}

@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="watchd"> 
+        <h1><span class="auto-type"></span> </h1>
+    </div> 
+    <div class="watchd_body"> 
+        <p1> Watchd is an application that allows you to track all movies or shows that you have watched. </p1>
+    </div> 
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <script>
+        var typed = new Typed(".auto-type",{
+            strings : [
+            "<span class='white'>Binge</span>Watchd"],
+            typeSpeed : 100,
+            backSpeed : 75,
+        })
+    </script>
+{% endblock content %}

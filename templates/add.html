@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="main_body"> 
+        <h1> Add Movies or Shows </h1>
+    </div> 
+    <div class="form_body"> 
+        <form action="/search_episode" method="post"> 
+            <p> Enter Name of Show or Movie :   </p>
+            <p> <input type="text" name="show_name" style="border-radius: 8px;" placeholder="Show or Movie Name "/> </p>
+            <p style="text-align: center;"> <input type="submit" /></p>
+        </form>
+    </div>
+    
+{% endblock content %}

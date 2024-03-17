@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="main_body"> 
+        <h1> Add Movies or Shows </h1>
+    </div> 
+    <div class="form_body"> 
+        <form action="/add_show" method="post"> 
+            <p> Selected Show ID : </p>
+            <input type="text" name="show_id" value="{{id}}" readonly>
+            <p> Enter Season Number :   </p>
+            <p> <input type="text" name="season_num" style="border-radius: 8px;" placeholder="Season Number :  "/> </p>
+            <p> Enter Episode Number :   </p>
+            <p> <input type="text" name="episode_num" style="border-radius: 8px;" placeholder="Episode Number :  "/> </p>
+            <p> Enter Your Rating :   </p>
+            <p> <input type="text" name="my_rating" style="border-radius: 8px;" placeholder="Rating (%) :  "/> </p>
+            <input type="hidden" name="show_name" value="{{show_name}}">
+            <p style="text-align: center;"> <input type="submit" /></p>
+        </form>
+    </div>
+    
+{% endblock content %}

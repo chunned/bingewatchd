@@ -1,13 +1,17 @@
 import db
 import tmdb
 import sqlite3
+import secrets
+import bcrypt
+from flask import session
 
-
+'''
 def main():
     print('OPTIONS MENU')
     print('1. Add a new episode')
     print('2. Add a rating to an existing show')
     print('3. Add a rating to an existing season')
+    print('4. View My List')
 
     try:
         choice = int(input("Choice: "))
@@ -15,28 +19,22 @@ def main():
         print("ERROR: Choice was not an integer. Please try again.")
         return None
 
-    if choice not in [1, 2, 3]:
+    if choice not in [1, 2, 3, 4]:
         print("ERROR: Invalid choice. Please option 1, 2, or 3.")
         return None
 
     if choice == 1:
         newEpisode()
-
+    elif choice == 4:
+        getEpisodes()
     else:
         print('Coming soon.')
+'''
 
+def newEpisode(showID,seasonNum,episodeNum,rating):
+    con = sqlite3.connect(session.get("token"))
+    cur = con.cursor()
 
-def newEpisode():
-    name = input("SHOW NAME: ")
-    # Get show ID
-    showID = tmdb.searchShow(name)
-    try:
-        seasonNum = int(input("SEASON #: "))
-        episodeNum = int(input("EPISODE #: "))
-        rating = int(input("RATING (%): "))
-    except ValueError:
-        print('ERROR: Rating, Season, or Episode number was not an integer. Please try again.')
-        return None
     # Query episode
     episodeResult = tmdb.searchEpisode(showID, seasonNum, episodeNum)
     # If episode is already in DB, None will be returned - so check that 'result' has a value before proceeding
@@ -80,16 +78,73 @@ def newEpisode():
         # Insert appearances into appears_in table
         for appearance in appearances:
             db.insertAppearance(cur, con, appearance)
+    
 
+#function to get the episodes in the table
+def getEpisodes():
+    con = sqlite3.connect(session.get("token"))
+    cur = con.cursor()
+    cur.execute('''SELECT * from show''')
+    rows = cur.fetchall() 
+    table = [""]
+    for row in rows:
+        table.append(row)
+        print(table)
+    return table
+
+
+def new_user(cur, con,name,password):
+    # Store hashed+salted user password
+    pass_hashed = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
+    db_file = secrets.token_hex(32) + '.db'   # Generate random string for database file
+
+    query = "INSERT INTO user (name, password, db_file) VALUES (?, ?, ?)"
+
+    cur.execute(query, (name, pass_hashed, db_file))
+    con.commit()
+
+
+def verify_password(password, hashed_password):
+    # Check hashed password. Using bcrypt.checkpw() method.
+    return bcrypt.checkpw(password.encode('utf-8'), hashed_password)
+
+
+def ulogin(cur, con,name,password):
+    # Get user to input their username and password, see if database has a match
+    # If so, return the database file, user is 'logged in'
+    try : 
+        cur.execute(f"SELECT * FROM user WHERE name = ?", (name,))
+        row = cur.fetchall()
+        pass_hash = row[0][1]
+        # If x = True, password matches the stored hash
+        x = verify_password(password, pass_hash)
+        if x:
+            return row[0][2]
+        else:
+            print('Incorrect password')
+            return None
+    except:
+        return None
+
+
+USER_DB = "users.db"
+# Initialize user database
+connection = sqlite3.connect(USER_DB)
+cursor = connection.cursor()
+
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS user(
+name TEXT PRIMARY KEY,
+password TEXT,
+db_file TEXT
+)
+""")
 
 if __name__ == "__main__":
     print('Welcome to Watchd v0.1 (CLI only)')
     print('Initializing database...')
     # Initialize database
-    con = sqlite3.connect("t5.db")
+    con = sqlite3.connect(session.get("token"))
     cur = con.cursor()
     db.createTables(cur)
     print('Database created successfully.')
-
-    while True:
-        main()

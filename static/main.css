@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+body {
+  font-family: "Inter", sans-serif;
+  color: #e0dddd;
+} /* Styling for the main body */
+
+html body { 
+  background-color: rgb(26, 25, 25);
+} /* Styling for the html main body for bootstrap */
+
+.navbar {
+  font-family: "Inter", sans-serif;
+  padding-left: 3rem;
+  padding-right: 3rem;
+  margin: 5px;
+  border-radius: 15px;
+  margin-bottom: 3%;
+  color: white;
+  font-size: 17px;
+} /* bootstrap navbar, colors, etc */
+a {
+  outline:0;
+  text-decoration: none;
+  color: aqua;
+}
+a:hover { 
+  color:aqua;
+}
+.nav-link:hover{
+  background-color: aqua;
+  color:rgb(0, 0, 0) !important;
+  border-radius: 10px;
+} /* change hovor color  */
+
+.watchd {
+  padding-top: 1.25rem;
+  display: flex;
+  justify-content: center;
+  margin-top: 15%;
+}
+.watchd h1 { 
+  font-size: 150px;
+  color: white;
+}
+
+.watchd_body {
+  display: flex;
+  justify-content: center;
+  font-family: "Inter", sans-serif;
+  color:white;
+}
+
+span {
+  color: white;
+}
+
+.auto-type {
+    color: aqua;
+}
+
+.main_body { 
+    display: flex;
+    justify-content: center;
+    padding-bottom: 3%;
+}
+
+.form_body { 
+    padding-top: 2%;
+    display: flex;
+    justify-content: center;
+}
+
+th { 
+  padding-right: 150px;
+}
+

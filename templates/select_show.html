@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="main_body"> 
+        <h1> Select Show to Add </h1>
+    </div>
+    <!-- code from https://stackoverflow.com/questions/48570109/layout-a-flex-box-similar-to-a-table -->
+    <form action="/add_details" method="post">
+    <input type="submit" value="Choose and add album" id="submit">
+    <input type="hidden" name="hidden_show_name" value="{{show_name}}">
+    <table>
+        <tr>
+            <th>Choice</th>
+            <th>#</th> 
+            <th>Name</th>
+            <th>Origin Country</th>
+            <th> Year </th>
+            <th></th>
+        </tr>
+    {% for show in range(3) %}
+        <tr>
+            <td>
+                <input value="{{ loop.index}}" name="selected_show" type="radio">
+            </td>
+            <td>{{ loop.index }}</td>
+            <td>{{ data['results'][show]['original_name']}}</td>
+            <td>{{ data['results'][show]['origin_country'][0]}}</td>
+            <td>{{ data['results'][show]['first_air_date'][:4]}}</td>
+        </tr>
+    {% endfor %}
+    </table>
+    </form>
+      {% endblock content %}
