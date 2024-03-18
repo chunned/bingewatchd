@@ -200,3 +200,25 @@ def insertShowGenre(cur, con, showID, genre):
     except sqlite3.IntegrityError:
         print("Show-genre relationship already exists in database.")
 
+def deleteInstance(cur, con, table, instanceID):
+    try:
+        cur.execute(f"DELETE FROM {table} WHERE id = {instanceID}")
+        con.commit()
+    except Exception as e:
+        print(f"ERROR: {e}")
+
+def patchInstance(cur, con, table, instanceID, columns, newValues):
+    # Columns and newValues must be in the following format: (name, number, airDate), (Pilot, 1, 1993-09-10)
+    try:
+        cur.execute(f"UPDATE {table} SET {columns} = {newValues} WHERE id = {instanceID}")
+        con.commit()
+    except Exception as e:
+        print(f"ERROR: {e}")
+
+def putInstance(cur, con, table, columns, values):
+    # Coluns and values 
+    try:
+        cur.execute(f"REPLACE INTO {table} {columns} VALUES{values}")
+        con.commit()
+    except Exception as e:
+        print(f"ERROR: {e}")
