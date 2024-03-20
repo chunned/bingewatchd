@@ -5,15 +5,17 @@
     </div> 
     <div class="form_body"> 
         <form action="/add_show" method="post"> 
-            <p> Selected Show ID : </p>
             <input type="hidden" name="show_id" value="{{id}}">
+            <input type="hidden" name="show_name" value="{{show_name}}">
             <p> Enter Season Number :   </p>
             <p> <input type="text" name="season_num" style="border-radius: 8px;" placeholder="Season Number :  "/> </p>
             <p> Enter Episode Number :   </p>
             <p> <input type="text" name="episode_num" style="border-radius: 8px;" placeholder="Episode Number :  "/> </p>
             <p> Enter Your Rating :   </p>
             <p> <input type="text" name="my_rating" style="border-radius: 8px;" placeholder="Rating (%) :  "/> </p>
-            <input type="hidden" name="show_name" value="{{show_name}}">
+            <p> Enter Date Watchd  :   </p>
+            <input type="date" name="watchd_date" style="border-radius: 8px; width: 100%;">
+            <p></p>
             <p style="text-align: center;"> <input type="submit" /></p>
         </form>
     </div>

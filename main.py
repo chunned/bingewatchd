@@ -31,7 +31,7 @@ def main():
         print('Coming soon.')
 '''
 
-def newEpisode(showID,seasonNum,episodeNum,rating):
+def newEpisode(showID,seasonNum,episodeNum,rating,dateWatched):
     con = sqlite3.connect(session.get("token"))
     cur = con.cursor()
 
@@ -41,6 +41,7 @@ def newEpisode(showID,seasonNum,episodeNum,rating):
     if episodeResult:
         # Append rating to the result list
         episodeResult['rating'] = rating
+        episodeResult['dateWatched'] = dateWatched
         # Add episode to DB
         db.insertEpisode(cur, con, episodeResult)
 

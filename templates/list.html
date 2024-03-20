@@ -11,8 +11,8 @@
             <th>Season Number</th>
             <th>Episode Number</th>
             <th>Episode Name</th>
+            <th>Date Watched</th>
             <th>Episode Rating</th>
-            <th>Date Watchd</th>
         </tr>
         {% for row in eps %}
         <tr>
@@ -21,10 +21,10 @@
             <td>{{row[8]}}</td>
             <td>{{row[15]}}</td>
             <td>{{row[14]}}</td>
-            <td>{{row[18]}}</td> 
-            <td>{{row[19]}}</td>
+            <td>{{row[17]}}</td> 
+            <td>{{row[18]}}</td>
         </tr>
-        <tr><td colspan="4"><hr></td></tr>
+        <tr><td colspan="9"><hr></td></tr>
         {% endfor %}
     </table>
       {% endblock content %}

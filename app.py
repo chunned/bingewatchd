@@ -51,7 +51,8 @@ def addShow():
     seasonNum = request.form.get("season_num")
     epNum = request.form.get("episode_num")
     myRating = request.form.get("my_rating")
-    newEpisodes = newEpisode(int(id),int(seasonNum),int(epNum),int(myRating))
+    watchDate = request.form.get("watchd_date")
+    newEpisodes = newEpisode(int(id),int(seasonNum),int(epNum),int(myRating),watchDate)
     return redirect("/mylist")
 
 @app.route("/add",methods=["POST","GET"])
@@ -88,11 +89,14 @@ def submit_login():
 
 @app.route("/submit_register",methods=["POST","GET"])
 def submit_register():
-    name = request.form.get("username")
-    passwd = request.form.get("password")
-    createUser = new_user(cursor, connection,name,passwd)
-    session["token"] = createUser
-    return render_template("index.html",token=session.get("token"))
+    try : 
+        name = request.form.get("username")
+        passwd = request.form.get("password")
+        createUser = new_user(cursor, connection,name,passwd)
+        session["token"] = createUser
+        return render_template("index.html",token=session.get("token"))
+    except: 
+        return render_template("404.html",token=session.get("token"))
 
 if __name__ == '__main__':
     app.run(host="localhost", debug=True, port=6969)
