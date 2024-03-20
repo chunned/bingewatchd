@@ -27,6 +27,12 @@
             <td>{{row[18]}}</td>
             <!-- form to pass in ID values to delete function -->
             <td> 
+                <form action="/update" method="post">
+                    <input type="hidden" name="new_episode_id" value="{{row[13]}}">
+                    <p style="text-align: center; background-color: transparent;"> <input type="submit" value="Edit" /></p>
+                </form>
+            </td>
+            <td> 
                 <form action="/delete" method="post">
                     <input type="hidden" name="show_id" value="{{row[0]}}">
                     <input type="hidden" name="season_id" value="{{row[8]}}">

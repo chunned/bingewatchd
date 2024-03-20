@@ -69,6 +69,10 @@ def addShow():
 def add():
     return render_template("add.html",token=session.get("token"))
 
+@app.route("/update",methods=["GET","POST"])
+def update():
+    return render_template("update.html",token=session.get("token"),id=request.form.get("new_episode_id"))
+
 @app.route("/delete",methods=["POST"])
 def deleteTableEntry():
     try : 
@@ -78,6 +82,18 @@ def deleteTableEntry():
         return redirect("/mylist")
     except:
         return redirect("/404")
+
+@app.route("/put_update",methods=["POST"])
+def patchEntry():
+    print(request.form.get("episode_id"))
+    print(request.form.get("new_watchd_date"))
+    newRating = request.form.get("new_my_rating")
+    if newRating == "":
+        newRating = "N/A"
+    patchInstance("episode",request.form.get("episode_id"),
+    request.form.get("new_watchd_date"),newRating)
+    return redirect("/mylist")
+
 
 @app.route("/login",methods=["POST","GET"])
 def login():
