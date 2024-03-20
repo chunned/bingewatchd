@@ -127,6 +127,14 @@ def ulogin(cur, con,name,password):
     except:
         return None
 
+def deleteEntry(table,showID):
+    con = sqlite3.connect(session.get("token"))
+    cur = con.cursor()
+    try:
+        cur.execute(f"DELETE FROM {table} WHERE id = {showID}")
+        con.commit()
+    except Exception as e:
+        print(f"ERROR: {e}")
 
 USER_DB = "users.db"
 # Initialize user database

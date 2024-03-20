@@ -59,6 +59,13 @@ def addShow():
 def add():
     return render_template("add.html",token=session.get("token"))
 
+@app.route("/delete",methods=["POST"])
+def deleteTableEntry():
+    deleteEntry("show_season",request.form.get("show_id"))
+    deleteEntry("season",request.form.get("season_id"))
+    deleteEntry("episode",request.form.get("episode_id"))
+    return redirect("/mylist")
+
 @app.route("/login",methods=["POST","GET"])
 def login():
     return render_template("login.html",token=session.get("token"))

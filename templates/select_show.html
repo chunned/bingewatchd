@@ -16,7 +16,7 @@
             <th> Year </th>
             <th></th>
         </tr>
-    {% for show in range(3) %}
+        {% for show in range(data['results']|length) %}
         <tr>
             <td>
                 <input value="{{ loop.index}}" name="selected_show" type="radio">
