@@ -84,7 +84,7 @@ def newEpisode(showID,seasonNum,episodeNum,rating):
 def getEpisodes():
     con = sqlite3.connect(session.get("token"))
     cur = con.cursor()
-    cur.execute('''SELECT * from show''')
+    cur.execute('''SELECT * FROM show as sh JOIN show_season as ss on sh.id=ss.showID JOIN season as sea on sea.id=ss.seasonID JOIN season_episode as se on sea.id=se.seasonID JOIN episode as epi on se.episodeID=epi.id;''')
     rows = cur.fetchall() 
     table = [""]
     for row in rows:

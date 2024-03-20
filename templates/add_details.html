@@ -6,7 +6,7 @@
     <div class="form_body"> 
         <form action="/add_show" method="post"> 
             <p> Selected Show ID : </p>
-            <input type="text" name="show_id" value="{{id}}" readonly>
+            <input type="hidden" name="show_id" value="{{id}}">
             <p> Enter Season Number :   </p>
             <p> <input type="text" name="season_num" style="border-radius: 8px;" placeholder="Season Number :  "/> </p>
             <p> Enter Episode Number :   </p>

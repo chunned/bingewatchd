@@ -95,4 +95,4 @@ def submit_register():
     return render_template("index.html",token=session.get("token"))
 
 if __name__ == '__main__':
-    app.run(host="192.168.2.252", debug=True, port=6969)
+    app.run(host="localhost", debug=True, port=6969)
