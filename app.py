@@ -4,13 +4,14 @@ from main import *
 import tmdb
 import db
 import bcrypt
-import dotenv
+#import dotenv
+import os
 
 #make a secrets app key for sesions
-secrets = dotenv.dotenv_values('.env')
-secretKey = secrets["SECRET_KEY"]
-app.secret_key = f"{secretKey}"
-
+#secrets = dotenv.dotenv_values('.env')
+#secretKey = secrets["SECRET_KEY"]
+#app.secret_key = f"{secretKey}"
+app.secret_key = os.getenv("SECRET_KEY")
 #initialize the user.db connection
 USER_DB = "users.db"
 # Initialize user database

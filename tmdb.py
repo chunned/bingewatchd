@@ -1,14 +1,15 @@
 import requests
 import json
-import dotenv
+#import dotenv
+import os
 from datetime import datetime
 
 # TODO: try/except error handling
 
 # Read API token and key from .env file
-apiSecrets = dotenv.dotenv_values('.env')
+#apiSecrets = dotenv.dotenv_values('.env')
 # Authentication header using API token from .env file
-header = {'Authorization': f'Bearer {apiSecrets["API_TOKEN"]}',
+header = {'Authorization': f'Bearer {os.getenv("API_TOKEN")}',
           'accept': 'application/json'}
 # Base URL used for all API queries
 URLBASE = 'https://api.themoviedb.org/3'
