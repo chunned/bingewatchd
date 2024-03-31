@@ -62,7 +62,7 @@ span {
 .main_body { 
     display: flex;
     justify-content: center;
-    padding-bottom: 3%;
+    padding-bottom: 15px;
 }
 
 .form_body { 
@@ -71,7 +71,15 @@ span {
     justify-content: center;
 }
 
-th { 
-  padding-right: 150px;
+
+/* Credits : https://stackoverflow.com/questions/10630311/make-a-table-fill-the-entire-window */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 10px;
+
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background: #c2c9d2;
 }
 

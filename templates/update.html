@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="main_body"> 
+        <h1> Add Movies or Shows </h1>
+    </div> 
+    <div class="form_body"> 
+        <form action="/put_update" method="post"> 
+            <input type="hidden" name="episode_id" value="{{id}}">
+            <p> Enter Your New Rating :   </p>
+            <p> <input type="text" name="new_my_rating" style="border-radius: 8px;" placeholder="Rating (%) :  "/> </p>
+            <p> Enter Date New Watchd  :   </p>
+            <input type="date" name="new_watchd_date" style="border-radius: 8px; width: 100%;">
+            <p></p>
+            <p style="text-align: center;"> <input type="submit" value="Update"/></p>
+        </form>
+    </div>
+    
+{% endblock content %}
